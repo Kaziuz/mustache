@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/estilos.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="js/mustache.js"></script>
+    <!-- custom js scripts -->
+    <script type="text/javascript" src="js/mustache-demo.js"></script>
+    <title> Mustache Demo </title>
+</head>
+<body>
+    <h1> Secciones con mustache </h1>
+    <p> Las secciones permiten mostrar un fragmento solo si una determinada condicion es verdadera o falsa. Tambien se pueden crear secciones repetitivas, que permiten crear listas y tablas de datos. 
+    </p>
+    <div id="wrap">
+        <div class="template">
+            <h3>Mustache plantilla: </h3>
+            <textarea id="template" name="name" rows="8" cols="40">
+                <h4> Productos disponibles: </h4>
+                <ul>
+                    <li>Producto: {{name}}</li>
+                    <li>Precio: ${{price}}</li>
+                    {{#inStock}} 
+                    {{! <!-- sección condicional, 
+                    si los datos estan asi:
+                    {
+                      "inStock": true
+                    }
+                    muestra el dato, si no nada --> }}
+                    <li><a href="#">Buy Now !</a></li>
+                    {{/inStock}} 
+                    {{! <!-- close sección condicional --> }}
+                    {{^inStock}}
+                    {{! <!-- sección invertida, solo muestra 
+                    el dato si es falso,  
+                    si los datos estan asi:
+                    {
+                      "inStock": false
+                    }
+                    muestra el dato, si no nada -->  }}
+                    <li><a href="#">Sorry, out of stock.</a></li>
+                    {{/inStock}}
+                </ul>
+            </textarea>
+        </div>
+        <div class="data">
+            <h3> Data Object:</h3>
+            <textarea id="data" name="name" rows="8" cols="40">
+            var data = {
+                "name": "Doña chula",
+                "price": "20.000",
+                "inStock": true
+            };
+            </textarea>
+        </div>
+         <div class="process">
+             <button onclick="process()">Procesar plantilla </button>
+         </div>
+         <div class="html">
+             <h3> Html resultante: </h3>
+             <textarea id="html" name="name" rows="8" cols="40"></textarea>
+         </div>
+         <div class="result">
+             <h3>Asi luce: </h3>
+             <div id="result"></div>
+         </div>
+    </div>
+</body>
+</html>

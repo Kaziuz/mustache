@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/estilos.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="js/mustache.js"></script>
+    <!-- custom js scripts -->
+    <script type="text/javascript" src="js/mustache-demo.js"></script>
+    <title> Mustache Demo </title>
+</head>
+<body>
+    <h1> Secciones  repetidas con mustache </h1>
+    <p> Las secciones de repetición son útiles cuando se desea mostrar una lista o tabla de datos relacionados en la página.
+    </p>
+    <h2> vamos a hacer aqui los siguiente </h2>
+    <ul>
+        <li>Agregamos una sección con mustache: {{#mySector}} ....... {{/mySector}}</li>
+        <li>Dentro de la sección, colocamos los elementos y variables que deseamos mostrar para cada lista</li>
+        <li>Agregamos una matríz de datos. Damos a <strong>mySector</strong> el mismo nombre de la sección </li>
+        <li>Cada elemento de la lista debe ser un objeto que contenga las propiedades correspondientes a las variables en el paso 2</li>
+    </ul>
+    <div id="wrap">
+        <div class="template">
+            <h3>Mustache plantilla: </h3>
+            <textarea id="template" name="name" rows="8" cols="40">
+                <h4> Productos disponibles: </h4>
+                <ul> {{#product}}
+                    <li>{{name}}: ${{price}}</li>
+                     {{/product}}
+                </ul>
+            </textarea>
+        </div>
+        <div class="data">
+            <h3> Data Object:</h3>
+            <textarea id="data" name="name" rows="8" cols="40">
+            var data = {
+                "product":
+                 [
+                    {
+                        "name":  "peras",
+                        "price": "2.000"    
+                    },
+                    {
+                        "name":  "bananos",
+                        "price": "500"    
+                    },
+                    {
+                        "name":  "cilantro",
+                        "price": "100"    
+                    }
+                 ]
+            };
+            </textarea>
+        </div>
+         <div class="process">
+             <button onclick="process()">Procesar plantilla </button>
+         </div>
+         <div class="html">
+             <h3> Html resultante: </h3>
+             <textarea id="html" name="name" rows="8" cols="40"></textarea>
+         </div>
+         <div class="result">
+             <h3>Asi luce: </h3>
+             <div id="result"></div>
+         </div>
+    </div>
+</body>
+</html>
